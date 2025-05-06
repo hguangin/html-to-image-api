@@ -1,32 +1,116 @@
-<!-- card-default.html -->
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
   <meta charset="UTF-8" />
+  <title>圓角描邊標題卡</title>
   <style>
+    /* 全站通用字型設定 */
+    :root {
+      --main-font: 'jf open 粉圓 2.1', 'Noto Sans TC', sans-serif;
+    }
+
     body {
-      font-family:'jf open 粉圓 2.1', 'Noto Color Emoji';
-      background: #fffaf2;
-      padding: 60px;
+      margin: 0;
+      width: 1200px;
+      height: 800px;
+      position: relative;
+      background-color: #fff;
+      font-family: var(--main-font);
+    }
+
+    /* 背景圖：滿版置中裁切 */
+    .bg {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: url("{{bgImage}}") center center / cover no-repeat;
+      z-index: 0;
+    }
+
+    /* 人物圖位置 */
+    .character {
+      position: absolute;
+      bottom: 0;
+      left: 120px;
+      width: 800px;
+      z-index: 2;
+    }
+
+    /* 裝飾圖位置 */
+    .decor {
+      position: absolute;
+      top: 260px;
+      right: 80px;
+      width: 200px;
+      z-index: 3;
+    }
+
+    /* 主標題外框 SVG 區塊 */
+    .title-svg {
+      position: absolute;
+      bottom: 100px;
+      width: 100%;
+      text-align: center;
+      z-index: 10;
+    }
+
+    svg {
+      width: 100%;
+      height: 100px;
+    }
+
+    text {
+      font-size: 60px;
+      font-weight: bold;
+      font-family: var(--main-font);
+    }
+
+    /* 副標題：右上角斜斜字 */
+    .subtitle {
+      position: absolute;
+      top: 110px;
+      right: 200px;
+      font-size: 40px;
       color: #333;
+      transform: rotate(-10deg);
+      font-weight: bold;
+      z-index: 5;
+      font-family: var(--main-font);
     }
-    .card {
-      max-width: 800px;
-      margin: auto;
-      padding: 60px;
-      background: #ffffff;
-      border-radius: 20px;
-      border: 3px dashed #ffa726;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-    }
-    h1 { font-size: 48px; color: #ff6f00; }
-    p { font-size: 28px; line-height: 1.6; }
   </style>
 </head>
 <body>
-  <div class="card">
-    <h1>Hello {{name}}</h1>
-    <p>{{message}}</p>
+  <!-- 背景圖 -->
+  <div class="bg"></div>
+
+  <!-- 人物插圖 -->
+  <img class="character" src="{{characterImage}}" alt="人物圖片" />
+
+  <!-- 裝飾圖片 -->
+  <img class="decor" src="{{decorImage}}" alt="裝飾圖" />
+
+  <!-- 主標題 SVG：描邊＋實心字 -->
+  <div class="title-svg">
+    <svg viewBox="0 0 1200 100" preserveAspectRatio="xMidYMid meet">
+      <!-- 白色圓潤描邊 -->
+      <text x="600" y="60"
+        text-anchor="middle"
+        dominant-baseline="middle"
+        stroke="white"
+        stroke-width="14"
+        stroke-linejoin="round"
+        paint-order="stroke"
+        fill="none">{{title}}</text>
+
+      <!-- 主文字 -->
+      <text x="600" y="60"
+        text-anchor="middle"
+        dominant-baseline="middle"
+        fill="#2a2a2a">{{title}}</text>
+    </svg>
   </div>
+
+  <!-- 右上角斜文字副標題 -->
+  <div class="subtitle">{{subtitle}}</div>
 </body>
 </html>
