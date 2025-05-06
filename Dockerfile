@@ -3,6 +3,7 @@ FROM node:18
 # 安裝系統套件（含字體支援）
 RUN apt-get update && apt-get install -y \
     chromium \
+    fonts-noto-color-emoji \
     fontconfig \
     --no-install-recommends && \
     rm -rf /var/lib/apt/lists/*
