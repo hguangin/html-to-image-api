@@ -3,7 +3,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const fs = require('fs');
 const path = require('path');
-const { nodeHtmlToImage } = require('node-html-to-image');
+const nodeHtmlToImage = require('node-html-to-image');
 const app = express();
 
 app.use(bodyParser.json());
