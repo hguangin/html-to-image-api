@@ -1,0 +1,35 @@
+<!-- card-birthday.html -->
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <style>
+    @font-face {
+      font-family: 'Huninn';
+      src: url('../fonts/jf-openhuninn-2.1.ttf') format('truetype');
+    }
+    body {
+      font-family: 'Huninn', sans-serif;
+      background: #fff0f5;
+      padding: 60px;
+    }
+    .card {
+      max-width: 800px;
+      margin: auto;
+      padding: 60px;
+      background: #fff5f8;
+      border-radius: 20px;
+      border: 4px dotted #ff69b4;
+      box-shadow: 0 8px 24px rgba(255,105,180,0.3);
+    }
+    h1 { font-size: 48px; color: #d81b60; }
+    p { font-size: 28px; line-height: 1.6; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>🎂 {{name}} 生日快樂！</h1>
+    <p>{{message}}</p>
+  </div>
+</body>
+</html>
