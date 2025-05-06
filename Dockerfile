@@ -1,20 +1,23 @@
 FROM node:18
 
-# 安裝 Chromium、中文字型、Emoji 字型
+# 安裝系統套件（含字體支援）
 RUN apt-get update && apt-get install -y \
     chromium \
-    fonts-noto-cjk \
-    fonts-noto-color-emoji \
+    fontconfig \
     --no-install-recommends && \
     rm -rf /var/lib/apt/lists/*
 
-# Puppeteer 的可執行路徑
+# 將字體複製進系統字體資料夾
+COPY fonts/*.ttf /usr/share/fonts/truetype/custom/
+
+# 更新字體快取
+RUN fc-cache -f -v
+
+# Puppeteer 使用 Chromium
 ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium
 
-# 建立工作目錄與安裝專案
 WORKDIR /app
 COPY . .
 
 RUN npm install
-
 CMD ["npm", "start"]
