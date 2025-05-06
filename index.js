@@ -30,6 +30,6 @@ app.get('/', (req, res) => {
   res.send('✅ HTML to Image server is running!');
 });
 
-app.listen(3000, () => {
-  console.log('Listening on port 3000');
+app.listen(process.env.PORT || 3000, () => {
+  console.log(`Listening on port ${process.env.PORT || 3000}`);
 });
