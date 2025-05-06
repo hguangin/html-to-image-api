@@ -1,0 +1,35 @@
+<!-- card-festival.html -->
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <style>
+    @font-face {
+      font-family: 'Huninn';
+      src: url('../fonts/jf-openhuninn-2.1.ttf') format('truetype');
+    }
+    body {
+      font-family: 'Huninn', sans-serif;
+      background: #f0f9ff;
+      padding: 60px;
+    }
+    .card {
+      max-width: 800px;
+      margin: auto;
+      padding: 60px;
+      background: #e3f2fd;
+      border-radius: 20px;
+      border: 3px solid #2196f3;
+      box-shadow: 0 8px 20px rgba(33,150,243,0.2);
+    }
+    h1 { font-size: 48px; color: #1565c0; }
+    p { font-size: 28px; line-height: 1.6; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>{{name}}，節日快樂！</h1>
+    <p>{{message}}</p>
+  </div>
+</body>
+</html>
