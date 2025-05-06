@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <style>
+    body {
+      margin: 0;
+      width: 1200px;
+      height: 800px;
+      position: relative;
+      font-family: 'Noto Sans TC', 'jf open 粉圓 2.1', sans-serif;
+      background-color: #ffeef2;
+    }
+
+    .bg {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: url("{{bgImage}}") center center / cover no-repeat;
+      z-index: 0;
+    }
+
+    .character {
+      position: absolute;
+      left: 120px;
+      bottom: 40px;
+      width: 460px;
+      z-index: 2;
+    }
+
+    .decor {
+      position: absolute;
+      top: 180px;
+      right: 100px;
+      width: 120px;
+      z-index: 3;
+    }
+
+    .title {
+      position: absolute;
+      top: 140px;
+      left: 660px;
+      width: 480px;
+      font-size: 44px;
+      color: #d81b60;
+      font-weight: bold;
+      text-align: left;
+      z-index: 4;
+    }
+
+    .subtitle {
+      position: absolute;
+      top: 220px;
+      left: 660px;
+      width: 480px;
+      font-size: 32px;
+      color: #333;
+      font-weight: 500;
+      text-align: left;
+      z-index: 4;
+    }
+  </style>
+</head>
+<body>
+  <div class="bg"></div>
+  <img class="character" src="{{characterImage}}" />
+  <img class="decor" src="{{decorImage}}" />
+  <div class="title">{{title}}</div>
+  <div class="subtitle">{{subtitle}}</div>
+</body>
+</html>
