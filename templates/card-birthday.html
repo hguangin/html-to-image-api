@@ -4,11 +4,15 @@
 <head>
   <meta charset="UTF-8" />
   <style>
+    /* 不用再定義 @font-face，改由 index.js 注入 */
+
     body {
       font-family: 'Huninn', sans-serif;
       background: #fff0f5;
       padding: 60px;
+      margin: 0;
     }
+
     .card {
       max-width: 800px;
       margin: auto;
@@ -18,8 +22,17 @@
       border: 4px dotted #ff69b4;
       box-shadow: 0 8px 24px rgba(255,105,180,0.3);
     }
-    h1 { font-size: 48px; color: #d81b60; }
-    p { font-size: 28px; line-height: 1.6; }
+
+    h1 {
+      font-size: 48px;
+      color: #d81b60;
+      margin-bottom: 30px;
+    }
+
+    p {
+      font-size: 28px;
+      line-height: 1.6;
+    }
   </style>
 </head>
 <body>
