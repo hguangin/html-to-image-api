@@ -1,0 +1,32 @@
+<!-- card-minimal.html -->
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <style>
+    @font-face {
+      font-family: 'Huninn';
+      src: url('../fonts/jf-openhuninn-2.1.ttf') format('truetype');
+    }
+    body {
+      font-family: 'Huninn', sans-serif;
+      background: #ffffff;
+      padding: 60px;
+    }
+    .card {
+      max-width: 800px;
+      margin: auto;
+      padding: 40px;
+      border-left: 6px solid #444;
+    }
+    h1 { font-size: 40px; color: #000; }
+    p { font-size: 26px; color: #555; line-height: 1.5; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>{{name}}</h1>
+    <p>{{message}}</p>
+  </div>
+</body>
+</html>
