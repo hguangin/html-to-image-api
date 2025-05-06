@@ -7,24 +7,23 @@ const app = express();
 
 app.use(bodyParser.json());
 
-// 產圖 API
 app.post('/html-to-image', async (req, res) => {
   const { html, content = {}, template } = req.body;
 
   try {
-    // 讀取字型路徑
     const fontPath = path.join(__dirname, 'fonts', 'jf-openhuninn-2.1.ttf');
-    const fontFaceStyle = `
+    const fontFace = `
       <style>
         @font-face {
           font-family: 'Huninn';
           src: url('file://${fontPath}') format('truetype');
         }
-        body { font-family: 'Huninn', sans-serif; }
+        body, .card, h1, p {
+          font-family: 'Huninn', sans-serif !important;
+        }
       </style>
     `;
 
-    // 讀取 HTML 模板
     let htmlTemplate = html;
 
     if (!htmlTemplate && template) {
@@ -36,29 +35,31 @@ app.post('/html-to-image', async (req, res) => {
     }
 
     if (!htmlTemplate) {
-      const defaultPath = path.join(__dirname, 'templates', 'card-default.html');
-      htmlTemplate = fs.readFileSync(defaultPath, 'utf8');
+      htmlTemplate = fs.readFileSync(path.join(__dirname, 'templates', 'card-default.html'), 'utf8');
     }
 
-    // 合併字型 + HTML
-    const finalHTML = fontFaceStyle + htmlTemplate;
+    // ⛔ 清除 template 內 @font-face 避免衝突
+    htmlTemplate = htmlTemplate.replace(/@font-face\\s*{[^}]*}/g, '');
 
-    // 產圖
-    const resultBuffer = await nodeHtmlToImage({
+    const finalHTML = fontFace + htmlTemplate;
+
+    const buffer = await nodeHtmlToImage({
       html: finalHTML,
       content,
-      puppeteerArgs: { args: ['--no-sandbox', '--disable-setuid-sandbox'] },
+      puppeteerArgs: {
+        args: ['--no-sandbox', '--disable-setuid-sandbox'],
+      },
     });
 
     res.set('Content-Type', 'image/png');
-    res.send(resultBuffer);
-  } catch (error) {
-    console.error('[圖片產生錯誤]', error);
+    res.send(buffer);
+  } catch (err) {
+    console.error('[Image Generation Error]', err);
     res.status(500).send('Image generation failed.');
   }
 });
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-  console.log(`✅ Server is running on port ${PORT}`);
+  console.log(`🚀 Server running at port ${PORT}`);
 });
