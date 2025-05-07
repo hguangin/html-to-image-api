@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <style>
   
-    /* ✅ 整體頁面設定（背景、尺寸、字型） */
+    /* 整體頁面設定（背景、尺寸、字型） */
     body {
       font-family:'jf open 粉圓 2.1', 'Noto Color Emoji';
       margin: 0; /* 去掉預設邊距 */
@@ -15,17 +15,16 @@
       background-color: #fff; /* 若圖片沒載入，底色為白 */
     }
 
-    /* ✅ 背景圖層：佔滿整個畫面、置中裁切 */
+    /* 背景圖層：佔滿整個畫面、置中裁切 */
     .bg {
       position: absolute;
       width: 100%;
       height: 100%;
-      background: url("{{bgImage}}");
-      center center / cover no-repeat;
+      background: url("{{bgImage}}") center center / cover no-repeat;
       z-index: 0;
     }
 
-    /* ✅ 人物插圖層：靠左底部擺放，固定寬度 */
+    /* 人物插圖層：靠左底部擺放，固定寬度 */
     .character {
       position: absolute;
       bottom: 0;
@@ -34,7 +33,7 @@
       z-index: 2; /* 蓋在背景上方 */
     }
 
-    /* ✅ 裝飾花朵圖層：右上角位置、大小固定 */
+    /* 裝飾花朵圖層：右上角位置、大小固定 */
     .decor {
       position: absolute;
       top: 260px;
@@ -43,28 +42,28 @@
       z-index: 3;
     }
 
-    /* ✅ 主標題整體區塊容器，置中並靠底部 100px */
+    /* 主標題整體區塊容器，置中並靠底部 100px */
     .title-svg {
       position: absolute;
       bottom: 100px;
       width: 100%;
       text-align: center;
-      z-index: 10;
+      z-index: 4;
     }
 
-    /* ✅ 主標題使用 SVG 呈現，以利雙層文字與精準描邊 */
+    /* 主標題使用 SVG 呈現，以利雙層文字與精準描邊 */
     svg {
       width: 100%;
       height: 100px;
     }
 
-    /* ✅ SVG 內文字的基本設定 */
+    /* SVG 內文字的基本設定 */
     text {
       font-size: 60px;         /* 字體大小 */
       font-weight: bold;       /* 粗體字 */
     }
 
-    /* ✅ 右上角「副標題」斜文字設定 */
+    /* 右上角「副標題」斜文字設定 */
     .subtitle {
       position: absolute;
       top: 110px;              /* 控制 Y 軸位置，可微調 */
@@ -78,16 +77,16 @@
   </style>
 </head>
 <body>
-  <!-- ✅ 背景圖層 -->
+  <!-- 背景圖層 -->
   <div class="bg"></div>
+  
+  <!-- 人物插圖 -->
+  <img class="character" src="{{characterImage}}" />
 
-  <!-- ✅ 人物插圖 -->
-  <img class="character" src="{{characterImage}}" alt="人物" />
+  <!-- 裝飾圖層 -->
+  <img class="decor" src="{{decorImage}}" />
 
-  <!-- ✅ 裝飾圖層 -->
-  <img class="decor" src="{{decorImage}}" alt="裝飾圖" />
-
-  <!-- ✅ 主標題文字：使用雙層 SVG 文字，模擬白描邊 -->
+  <!-- 主標題文字：使用雙層 SVG 文字，模擬白描邊 -->
   <div class="title-svg">
     <svg viewBox="0 0 1200 100" preserveAspectRatio="xMidYMid meet">
       <!-- 白色圓角描邊層（用 stroke-linejoin: round 產生圓潤感） -->
@@ -99,13 +98,11 @@
         fill="none">{{title}}</text>
 
       <!-- 文字實體層：黑字主文 -->
-      <text x="600" y="60" text-anchor="middle" fill="#2a2a2a">
-        {{title}}
-      </text>
+      <text x="600" y="60" text-anchor="middle" fill="#2a2a2a">{{title}}</text>
     </svg>
   </div>
 
-  <!-- ✅ 副標題文字：右上角斜斜的「有您真好！！」 -->
+  <!-- 副標題文字：斜右上角10度 -->
   <div class="subtitle">{{subtitle}}</div>
 </body>
 </html>
