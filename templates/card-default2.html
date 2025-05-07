@@ -68,8 +68,9 @@
     /* SVG 內文字的基本設定 */
     text {
       font-family:'粒線體 不等寬', 'Noto Color Emoji';
-      font-size: 65px;         /* 字體大小 */
+      font-size: 72px;         /* 字體大小 */
       font-weight: bold;       /* 粗體字 */
+      letter-spacing: 10px; /*  增加文字間距 */
     }
 
     /* 右上角「副標題」斜文字設定 */
@@ -83,6 +84,9 @@
       transform: rotate(-10deg); /* 斜斜的文字效果 */
       font-weight: bold;
       z-index: 5;              /* 蓋在人物圖與裝飾上方 */
+      text-shadow:             /* 加入清晰陰影 */
+        3px 3px 6px rgba(0, 0, 0, 0.4),
+        -2px -2px 4px rgba(0, 0, 0, 0.2);
     }
   </style>
 </head>
