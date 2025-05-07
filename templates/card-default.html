@@ -2,13 +2,13 @@
 <html lang="zh-TW">
 <head>
   <meta charset="UTF-8" />
-  <title>圓角描邊標題卡</title>
   <style>
   
     /* ✅ 整體頁面設定（背景、尺寸、字型） */
     body {
       font-family:'jf open 粉圓 2.1', 'Noto Color Emoji';
       margin: 0; /* 去掉預設邊距 */
+	 padding: 0;
       width: 1200px;
       height: 800px;
       position: relative; /* 供內層絕對定位參考 */
@@ -20,8 +20,8 @@
       position: absolute;
       width: 100%;
       height: 100%;
-      background: url("{{bgImage}}")
-        center center / cover no-repeat;
+      background: url("{{bgImage}}");
+      center center / cover no-repeat;
       z-index: 0;
     }
 
