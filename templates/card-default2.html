@@ -6,9 +6,8 @@
   
     /* 整體頁面設定（背景、尺寸、字型） */
     body {
-      font-family:'jf open 粉圓 2.1', 'Noto Color Emoji';
       margin: 0; /* 去掉預設邊距 */
-	 padding: 0;
+      padding: 0;
       width: 1200px;
       height: 800px;
       position: relative; /* 供內層絕對定位參考 */
@@ -68,17 +67,19 @@
 
     /* SVG 內文字的基本設定 */
     text {
+      font-family:'粒線體 不等寬', 'Noto Color Emoji';
       font-size: 65px;         /* 字體大小 */
       font-weight: bold;       /* 粗體字 */
     }
 
     /* 右上角「副標題」斜文字設定 */
     .subtitle {
+      font-family:'jf open 粉圓 2.1', 'Noto Color Emoji';
       position: absolute;
       top: 110px;              /* 控制 Y 軸位置，可微調 */
       right: 200px;            /* 控制 X 軸位置，可微調 */
       font-size: 40px;
-      color: #333;
+      color: #fff;
       transform: rotate(-10deg); /* 斜斜的文字效果 */
       font-weight: bold;
       z-index: 5;              /* 蓋在人物圖與裝飾上方 */
@@ -101,7 +102,7 @@
         fill="none">{{title}}</text>
 
       <!-- 文字實體層：黑字主文 -->
-      <text x="600" y="60" text-anchor="middle" fill="#2a2a2a">{{title}}</text>
+      <text x="600" y="60" text-anchor="middle" fill="#4a4e69">{{title}}</text>
     </svg>
   </div>
   
@@ -117,7 +118,7 @@
         fill="none">{{title2}}</text>
 
       <!-- 文字實體層：黑字主文 -->
-      <text x="600" y="60" text-anchor="middle" fill="#2a2a2a">{{title2}}</text>
+      <text x="600" y="60" text-anchor="middle" fill="#4a4e69">{{title2}}</text>
     </svg>
   </div>
 
