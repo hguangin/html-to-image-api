@@ -1,4 +1,3 @@
-// index.js
 const express = require('express');
 const bodyParser = require('body-parser');
 const fs = require('fs');
@@ -6,13 +5,18 @@ const path = require('path');
 const nodeHtmlToImage = require('node-html-to-image');
 const app = express();
 
+// ✅ 加入這行：引用 convert.js
+const convertRoute = require('./convert');
+
 app.use(bodyParser.json());
+
+// ✅ 加入這行：設定 /convert API
+app.use('/convert', convertRoute);
 
 app.post('/html-to-image', async (req, res) => {
   const { html, content = {}, template } = req.body;
 
   try {
-    // 指定本地字型路徑
     const fontPath = path.join(__dirname, 'fonts', 'jf-openhuninn-2.1.ttf');
     const fontFaceStyle = `
       <style>
@@ -28,7 +32,6 @@ app.post('/html-to-image', async (req, res) => {
 
     let htmlTemplate = html;
 
-    // 讀取模板檔案
     if (!htmlTemplate && template) {
       const templatePath = path.join(__dirname, 'templates', template);
       if (!fs.existsSync(templatePath)) {
@@ -37,17 +40,14 @@ app.post('/html-to-image', async (req, res) => {
       htmlTemplate = fs.readFileSync(templatePath, 'utf8');
     }
 
-    // 預設模板
     if (!htmlTemplate) {
       htmlTemplate = fs.readFileSync(path.join(__dirname, 'templates', 'card-default.html'), 'utf8');
     }
 
-    // 移除舊有的 @font-face 避免衝突
     htmlTemplate = htmlTemplate.replace(/@font-face\s*{[^}]*}/g, '');
 
     const finalHTML = fontFaceStyle + htmlTemplate;
 
-    // 產生圖片
     const buffer = await nodeHtmlToImage({
       html: finalHTML,
       content,
