@@ -3,7 +3,7 @@ const express = require('express');
 const OpenCC = require('opencc-js');
 
 const router = express.Router();
-const converter = OpenCC.Converter({ from: 'cn', to: 'twp' });
+const converter = OpenCC.Converter({ from: 'cn', to: 'tw' });
 
 router.post('/', (req, res) => {
   const { text } = req.body;
