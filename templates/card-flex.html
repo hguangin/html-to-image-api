@@ -99,7 +99,7 @@
 
   <div class="subtitle-svg">
     <svg viewBox="0 0 1200 100" preserveAspectRatio="xMidYMid meet">
-      <text class="text-subtitle {{陰影.shadow}}" x="600" y="60" text-anchor="middle"
+      <text class="text-subtitle {{#if 副標題.shadow}}shadow{{/if}}" x="600" y="60" text-anchor="middle"
         stroke="{{副標題邊框.color}}" stroke-width="{{副標題邊框.size}}" stroke-linejoin="round"
         paint-order="stroke" fill="none">{{副標題.text}}</text>
       <text class="text-subtitle" x="600" y="60" text-anchor="middle"
