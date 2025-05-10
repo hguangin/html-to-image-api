@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      width: 1200px;
+      height: 800px;
+      position: relative;
+      background-color: #fff;
+    }
+
+    .bg {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: url("{{背景圖片.image}}") center center / cover no-repeat;
+      z-index: 0;
+    }
+
+    .title-svg {
+      position: absolute;
+      bottom: 170px;
+      width: 100%;
+      text-align: center;
+      z-index: 1;
+    }
+
+    .title-svg2 {
+      position: absolute;
+      bottom: 70px;
+      width: 100%;
+      text-align: center;
+      z-index: 1;
+    }
+
+    .subtitle-svg {
+      position: absolute;
+      top: 80px;
+      right: -290px;
+      width: 100%;
+      text-align: center;
+      z-index: 1;
+      transform: rotate(-10deg);
+    }
+
+    svg {
+      width: 100%;
+      height: 120px;
+    }
+
+    text.text-title1 {
+      font-family: '粒線體 不等寬', 'Noto Color Emoji';
+      font-size: {{主標題1.fontSize}}px;
+	 letter-spacing: {{主標題1.fontSpace}}px;
+    }
+    
+    text.text-title2 {
+      font-family: '粒線體 不等寬', 'Noto Color Emoji';
+      font-size: {{主標題2.fontSize}}px;
+	 letter-spacing: {{主標題2.fontSpace}}px;
+    }
+
+    text.text-subtitle {
+      font-family: 'jf open 粉圓 2.1', 'Noto Color Emoji';
+      font-size: {{副標題.fontSize}}px;
+	 letter-spacing: {{副標題.fontSpace}}px;
+    }
+
+    .shadow {
+      filter: drop-shadow(4px 3px 3px rgba(0, 0, 0, 0.5));
+    }
+  </style>
+</head>
+<body>
+  <div class="bg"></div>
+
+  <div class="title-svg">
+    <svg viewBox="0 0 1200 100" preserveAspectRatio="xMidYMid meet">
+      <text class="text-title1 {{#if 主標題1.shadow}}shadow{{/if}}" x="600" y="60" text-anchor="middle"
+        stroke="{{主標題框1.color}}" stroke-width="{{主標題框1.size}}" stroke-linejoin="round"
+        paint-order="stroke" fill="none">{{主標題1.text}}</text>
+      <text class="text-title1" x="600" y="60" text-anchor="middle"
+        fill="{{主標題1.color}}">{{主標題1.text}}</text>
+    </svg>
+  </div>
+
+  <div class="title-svg2">
+    <svg viewBox="0 0 1200 100" preserveAspectRatio="xMidYMid meet">
+      <text class="text-title2 {{#if 主標題2.shadow}}shadow{{/if}}" x="600" y="60" text-anchor="middle"
+        stroke="{{主標題框2.color}}" stroke-width="{{主標題框2.size}}" stroke-linejoin="round"
+        paint-order="stroke" fill="none">{{主標題2.text}}</text>
+      <text class="text-title2" x="600" y="60" text-anchor="middle"
+        fill="{{主標題2.color}}">{{主標題2.text}}</text>
+    </svg>
+  </div>
+
+  <div class="subtitle-svg">
+    <svg viewBox="0 0 1200 100" preserveAspectRatio="xMidYMid meet">
+      <text class="text-subtitle {{陰影.shadow}}" x="600" y="60" text-anchor="middle"
+        stroke="{{副標題邊框.color}}" stroke-width="{{副標題邊框.size}}" stroke-linejoin="round"
+        paint-order="stroke" fill="none">{{副標題.text}}</text>
+      <text class="text-subtitle" x="600" y="60" text-anchor="middle"
+        fill="{{副標題.color}}">{{副標題.text}}</text>
+    </svg>
+  </div>
+</body>
+</html>
