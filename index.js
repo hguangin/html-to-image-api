@@ -14,7 +14,7 @@ app.use(bodyParser.json());
 app.use('/convert', convertRoute);
 
 app.post('/html-to-image', async (req, res) => {
-  const { html, content = {}, template } = req.body;
+  const { html, template, layers = {} } = req.body;
 
   try {
     const fontPath = path.join(__dirname, 'fonts', 'jf-openhuninn-2.1.ttf');
@@ -50,7 +50,7 @@ app.post('/html-to-image', async (req, res) => {
 
     const buffer = await nodeHtmlToImage({
       html: finalHTML,
-      content,
+      content: layers,
       puppeteerArgs: {
         args: ['--no-sandbox', '--disable-setuid-sandbox'],
       },
