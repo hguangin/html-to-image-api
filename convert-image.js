@@ -5,7 +5,7 @@ const path = require('path');
 
 const router = express.Router();
 
-router.post('/convert', async (req, res) => {
+router.post('/', async (req, res) => {
   const { source, convert = {} } = req.body;
 
   // 驗證網址是否提供
