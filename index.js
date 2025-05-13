@@ -4,16 +4,16 @@ const fs = require('fs');
 const path = require('path');
 const nodeHtmlToImage = require('node-html-to-image');
 
-// ✅ 引入新模組
-const convertRoute = require('./convert-to-webp');
+// ✅ 將原本 convert-to-webp 改為 convert-image
+const convertImageRoute = require('./convert-image');
 
 const app = express();
 app.use(bodyParser.json());
 
-// ✅ 註冊新模組：/convert
-app.use('/convert', convertRoute);
+// ✅ 把 API 掛在 /convert-image
+app.use('/convert-image', convertImageRoute);
 
-// ✅ 原有 HTML to Image 功能
+// ✅ 保留原本 /html-to-image 功能
 app.post('/html-to-image', async (req, res) => {
   const { html, template, layers = {} } = req.body;
 
