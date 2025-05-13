@@ -3,16 +3,17 @@ const bodyParser = require('body-parser');
 const fs = require('fs');
 const path = require('path');
 const nodeHtmlToImage = require('node-html-to-image');
+
+// ✅ 引入新模組
+const convertRoute = require('./convert-to-webp');
+
 const app = express();
-
-// ✅ 加入這行：引用 convert.js
-const convertRoute = require('./convert');
-
 app.use(bodyParser.json());
 
-// ✅ 加入這行：設定 /convert API
+// ✅ 註冊新模組：/convert
 app.use('/convert', convertRoute);
 
+// ✅ 原有 HTML to Image 功能
 app.post('/html-to-image', async (req, res) => {
   const { html, template, layers = {} } = req.body;
 
@@ -45,7 +46,6 @@ app.post('/html-to-image', async (req, res) => {
     }
 
     htmlTemplate = htmlTemplate.replace(/@font-face\s*{[^}]*}/g, '');
-
     const finalHTML = fontFaceStyle + htmlTemplate;
 
     const buffer = await nodeHtmlToImage({
