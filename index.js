@@ -16,8 +16,6 @@ app.use('/convert-image', convertImageRoute);
 // ✅ 加入這行：引用 convert.js
 const convertRoute = require('./convert');
 
-app.use(bodyParser.json());
-
 // ✅ 加入這行：設定 /convert API
 app.use('/convert', convertRoute);
 
