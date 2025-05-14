@@ -13,6 +13,14 @@ app.use(bodyParser.json());
 // ✅ 把 API 掛在 /convert-image
 app.use('/convert-image', convertImageRoute);
 
+// ✅ 加入這行：引用 convert.js
+const convertRoute = require('./convert');
+
+app.use(bodyParser.json());
+
+// ✅ 加入這行：設定 /convert API
+app.use('/convert', convertRoute);
+
 // ✅ 保留原本 /html-to-image 功能
 app.post('/html-to-image', async (req, res) => {
   const { html, template, layers = {} } = req.body;
