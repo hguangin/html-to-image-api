@@ -1,25 +1,28 @@
+require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
 const fs = require('fs');
 const path = require('path');
 const nodeHtmlToImage = require('node-html-to-image');
 
-// ✅ 將原本 convert-to-webp 改為 convert-image
+// 你的其他路由
 const convertImageRoute = require('./convert-image');
+const convertRoute = require('./convert');
+
+// ✅ 新增 Gemini Grounding 路由
+const geminiGroundingRoute = require('./gemini-grounding');
 
 const app = express();
 app.use(bodyParser.json());
 
-// ✅ 把 API 掛在 /convert-image
+// 既有功能
 app.use('/convert-image', convertImageRoute);
-
-// ✅ 加入這行：引用 convert.js
-const convertRoute = require('./convert');
-
-// ✅ 加入這行：設定 /convert API
 app.use('/convert', convertRoute);
 
-// ✅ 保留原本 /html-to-image 功能
+// ✅ 新增 Gemini API 查證
+app.use('/gemini-grounding', geminiGroundingRoute);
+
+// 既有 HTML to image API
 app.post('/html-to-image', async (req, res) => {
   const { html, template, layers = {} } = req.body;
 
