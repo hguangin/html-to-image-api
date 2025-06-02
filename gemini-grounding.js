@@ -5,6 +5,8 @@ const { GoogleGenAI } = require('@google/genai');
 router.post('/', async (req, res) => {
   const prompt = req.body.prompt;
   const apiKey = req.body.key || process.env.GEMINI_API_KEY;
+  // 新增 model 支援，預設值為 gemini-2.0-flash
+  const model = req.body.model || "gemini-2.0-flash";
 
   if (!prompt) {
     return res.status(400).json({ error: 'prompt is required' });
@@ -16,7 +18,7 @@ router.post('/', async (req, res) => {
   try {
     const ai = new GoogleGenAI({ apiKey }); // 這裡用動態 apiKey
     const response = await ai.models.generateContent({
-      model: "gemini-2.0-flash",
+      model,
       contents: [prompt],
       config: {
         tools: [{ googleSearch: {} }]
