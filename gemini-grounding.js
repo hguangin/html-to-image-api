@@ -3,11 +3,10 @@ const router = express.Router();
 const { GoogleGenAI } = require('@google/genai');
 
 router.post('/', async (req, res) => {
-  const prompt = req.body.prompt;
+  let prompt = req.body.prompt;
   const apiKey = req.body.key || process.env.GEMINI_API_KEY;
-  // 新增 model 支援，預設值為 gemini-2.0-flash
   const model = req.body.model || "gemini-2.0-flash";
-  const temperature = req.body.temperature; // 新增這行
+  const temperature = req.body.temperature;
 
   if (!prompt) {
     return res.status(400).json({ error: 'prompt is required' });
@@ -16,10 +15,13 @@ router.post('/', async (req, res) => {
     return res.status(400).json({ error: 'API key is required' });
   }
 
-  try {
-    const ai = new GoogleGenAI({ apiKey }); // 這裡用動態 apiKey
+  // 在 prompt 結尾加一組隨機字串避免被緩存
+  const randomStr = Math.random().toString(36).slice(2, 10);
+  prompt = `${prompt} [${randomStr}]`;
 
-    // 根據有無 temperature 動態加入參數
+  try {
+    const ai = new GoogleGenAI({ apiKey });
+
     const config = {
       tools: [{ googleSearch: {} }]
     };
