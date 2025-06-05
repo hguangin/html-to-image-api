@@ -7,6 +7,7 @@ router.post('/', async (req, res) => {
   const apiKey = req.body.key || process.env.GEMINI_API_KEY;
   // 新增 model 支援，預設值為 gemini-2.0-flash
   const model = req.body.model || "gemini-2.0-flash";
+  const temperature = req.body.temperature; // 新增這行
 
   if (!prompt) {
     return res.status(400).json({ error: 'prompt is required' });
@@ -17,12 +18,19 @@ router.post('/', async (req, res) => {
 
   try {
     const ai = new GoogleGenAI({ apiKey }); // 這裡用動態 apiKey
+
+    // 根據有無 temperature 動態加入參數
+    const config = {
+      tools: [{ googleSearch: {} }]
+    };
+    if (typeof temperature !== 'undefined') {
+      config.temperature = temperature;
+    }
+
     const response = await ai.models.generateContent({
       model,
       contents: [prompt],
-      config: {
-        tools: [{ googleSearch: {} }]
-      }
+      config
     });
     const answer = response.text;
     let grounding = '';
